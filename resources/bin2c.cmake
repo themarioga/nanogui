@@ -14,6 +14,8 @@ string(REPLACE "," ";" INPUT_LIST ${INPUT_FILES})
 
 # Iterate through binary files files
 foreach(bin ${INPUT_LIST})
+  string(REGEX REPLACE "\\\\" "/" bin ${bin})
+  string(REGEX REPLACE "CC:/msys2/msys2" "C:/msys2" bin ${bin})
   # Get short filename
   string(REGEX MATCH "([^/]+)$" filename ${bin})
   # Replace filename spaces & extension separator for C compatibility
